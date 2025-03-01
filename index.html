@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Sheets</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Order Sheets</h2>
+        <p class="text-center">Click on a file to download</p>
+        
+        <div class="list-group" id="pdf-list">
+            <!-- PDF links will be added here -->
+        </div>
+    </div>
+
+    <script>
+        // Example PDF files (Replace with actual links)
+        const pdfFiles = [
+            { name: "Order Sheet 1", url: "https://drive.google.com/file/d/EXAMPLE1/view" },
+            { name: "Order Sheet 2", url: "https://drive.google.com/file/d/EXAMPLE2/view" }
+        ];
+
+        const listContainer = document.getElementById("pdf-list");
+
+        pdfFiles.forEach(file => {
+            const link = document.createElement("a");
+            link.href = file.url;
+            link.className = "list-group-item list-group-item-action";
+            link.target = "_blank";
+            link.textContent = file.name;
+            listContainer.appendChild(link);
+        });
+    </script>
+</body>
+</html>
