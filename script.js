@@ -1,6 +1,6 @@
 const SHEET_ID = 'YOUR_SHEET_ID_HERE'; // Replace with your actual Sheet ID
 const SHEET_NAME = 'Cases';
-const API_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${SHEET_NAME}`;
+const API_URL = `https://docs.google.com/spreadsheets/d/e/2PACX-1vRS1ldWQEmWhKaoQNvSSn3pzLx7An0FW8nP-mOervvgoxCM6NAigiUSmNUKOgJXuAXZoqpgZGqRYRoM/pubhtml`;
 
 fetch(API_URL)
   .then(res => res.text())
