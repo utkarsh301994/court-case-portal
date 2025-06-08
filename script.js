@@ -1,5 +1,5 @@
 const SHEET_ID = '2PACX-1vRS1ldWQEmWhKaoQNvSSn3pzLx7An0FW8nP-mOervvgoxCM6NAigiUSmNUKOgJXuAXZoqpgZGqRYRoM'; // Replace with your actual Sheet ID
-const SHEET_NAME = 'Cases';
+const SHEET_NAME = 'MP/C CASE';
 const API_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${SHEET_NAME}`;
 
 fetch(API_URL)
