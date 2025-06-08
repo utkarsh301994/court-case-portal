@@ -20,31 +20,31 @@ fetch(API_URL)
       table.appendChild(tr);
     });
   });
-    const filters = document.querySelectorAll("thead input");
+const filters = document.querySelectorAll("thead input");
 
-    filters.forEach((input, colIndex) => {
-      input.addEventListener("keyup", () => {
-        const table = document.querySelector("#caseTable");
-        const tbody = table.querySelector("tbody");
-        const rows = tbody.querySelectorAll("tr");
+filters.forEach((input, colIndex) => {
+  input.addEventListener("keyup", () => {
+    const table = document.querySelector("#caseTable");
+    const tbody = table.querySelector("tbody");
+    const rows = tbody.querySelectorAll("tr");
 
-        rows.forEach(row => {
-          const cells = row.querySelectorAll("td");
-          let show = true;
+    rows.forEach(row => {
+      const cells = row.querySelectorAll("td");
+      let show = true;
 
-          filters.forEach((filterInput, i) => {
-            const filterVal = filterInput.value.toLowerCase().trim();
-            const cellText = (cells[i]?.textContent || "").toLowerCase();
+      filters.forEach((filterInput, i) => {
+        const filterVal = filterInput.value.toLowerCase().trim();
+        const cellText = (cells[i]?.textContent || "").toLowerCase();
 
-            if (filterVal && !cellText.includes(filterVal)) {
-              show = false;
-            }
-          });
-
-          row.style.display = show ? "" : "none";
-        });
+        if (filterVal && !cellText.includes(filterVal)) {
+          show = false;
+        }
       });
+
+      row.style.display = show ? "" : "none";
     });
+  });
+});
 document.getElementById("caseForm").addEventListener("submit", function (e) {
     e.preventDefault();
 
