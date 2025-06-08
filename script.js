@@ -84,8 +84,8 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
 
     // ✅ 4. JL No + Dag No must be unique combination
     for (let row of existingRows) {
-      const existingJL = row.children[9]?.textContent.trim();
-      const existingDag = row.children[10]?.textContent.trim();
+      const existingJL = row.children[8]?.textContent.trim();
+      const existingDag = row.children[9]?.textContent.trim();
       if (existingJL === jl && existingDag === dag) {
         errors.push(`Combination of JL No. ${jl} and Dag No. ${dag} already exists.`);
         break;
