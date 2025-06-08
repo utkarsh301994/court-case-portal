@@ -45,4 +45,38 @@ fetch(API_URL)
         });
       });
     });
+document.getElementById("caseForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
+    const form = e.target;
+    const formData = new FormData(form);
+
+    const values = [
+      formData.get("mp"),
+      formData.get("caseNo"),
+      formData.get("filingDate"),
+      formData.get("petitioner"),
+      formData.get("opponent"),
+      formData.get("section"),
+      formData.get("officer"),
+      formData.get("mouza"),
+      formData.get("khatian"),
+      formData.get("jl"),
+      formData.get("dag"),
+      formData.get("area"),
+      formData.get("nextDate"),
+      formData.get("advocate")
+    ];
+
+    const tbody = document.querySelector("#caseTable tbody");
+    const tr = document.createElement("tr");
+
+    values.forEach(val => {
+      const td = document.createElement("td");
+      td.textContent = val;
+      tr.appendChild(td);
+    });
+
+    tbody.appendChild(tr);
+    form.reset(); // Clear form
+  });
