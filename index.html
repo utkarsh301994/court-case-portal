@@ -10,17 +10,20 @@
   <form id="caseForm">
     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
       <input type="text" placeholder="Case No." name="caseNo" required>
-      <input type="text" placeholder="Filing Date" name="filingDate">
-      <input type="text" placeholder="Petitioner's Name" name="petitioner">
-      <input type="text" placeholder="O.P's Name" name="opponent">
+      <input type="date" placeholder="Filing Date" name="filingDate" required>
+      <input type="text" placeholder="Petitioner's Name" name="petitioner" required>
+      <input type="text" placeholder="O.P's Name" name="opponent" required>
       <input type="text" placeholder="Under Section" name="section">
       <input type="text" placeholder="Officer" name="officer">
       <input type="text" placeholder="Mouza" name="mouza">
-      <input type="text" placeholder="Khatian No." name="khatian">
-      <input type="text" placeholder="JL No." name="jl">
-      <input type="text" placeholder="Dag No." name="dag">
-      <input type="text" placeholder="Area" name="area">
-      <input type="text" placeholder="Next Date" name="nextDate">
+      
+      <!-- Numbers -->
+      <input type="number" placeholder="Khatian No." name="khatian" min="0">
+      <input type="number" placeholder="JL No." name="jl" min="0">
+      <input type="number" placeholder="Dag No." name="dag" min="0">
+      <input type="number" step="0.01" placeholder="Area" name="area" min="0">
+  
+      <input type="date" placeholder="Next Date" name="nextDate">
       <input type="text" placeholder="Advocate" name="advocate">
     </div>
     <br>
