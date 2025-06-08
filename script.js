@@ -52,7 +52,6 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     const formData = new FormData(form);
 
     const values = [
-      
       formData.get("caseNo"),
       formData.get("filingDate"),
       formData.get("petitioner"),
