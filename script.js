@@ -104,7 +104,6 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     }
      // ✅ Passed all checks — now insert
     const values = [
-      formData.get("mp"),
       caseNo,
       filingDate,
       formData.get("petitioner"),
