@@ -65,7 +65,7 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
 
     // ✅ 1. Case No. should be unique
     for (let row of existingRows) {
-      const existingCaseNo = row.children[1]?.textContent.trim();
+      const existingCaseNo = row.children[0]?.textContent.trim();
       if (existingCaseNo === caseNo) {
         errors.push(`Duplicate Case No: ${caseNo} already exists.`);
         break;
