@@ -50,24 +50,78 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
 
     const form = e.target;
     const formData = new FormData(form);
+  
+    const filingDate = formData.get("filingDate");
+    const nextDate = formData.get("nextDate");
+    const today = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD'
 
+    const caseNo = formData.get("caseNo").trim();
+    const jl = formData.get("jl").trim();
+    const dag = formData.get("dag").trim();
+
+    const tbody = document.querySelector("#caseTable tbody");
+    const existingRows = tbody.querySelectorAll("tr");
+    const errors = [];
+
+    // ✅ 1. Case No. should be unique
+    for (let row of existingRows) {
+      const existingCaseNo = row.children[1]?.textContent.trim();
+      if (existingCaseNo === caseNo) {
+        errors.push(`Duplicate Case No: ${caseNo} already exists.`);
+        break;
+      }
+    }
+
+    // ✅ 2. Filing Date must be today's date
+    //if (filingDate !== today) {
+     // errors.push(`Filing Date must be today's date: ${today}`);
+   // }
+
+    // ✅ 3. Next Date must be after Filing Date
+    if (nextDate && new Date(nextDate) <= new Date(filingDate)) {
+      errors.push(`Next Date must be after Filing Date.`);
+    }
+
+    // ✅ 4. JL No + Dag No must be unique combination
+    for (let row of existingRows) {
+      const existingJL = row.children[9]?.textContent.trim();
+      const existingDag = row.children[10]?.textContent.trim();
+      if (existingJL === jl && existingDag === dag) {
+        errors.push(`Combination of JL No. ${jl} and Dag No. ${dag} already exists.`);
+        break;
+      }
+    }
+
+    // Optional basic type checks
+    //const area = formData.get("area");
+    //if (area && (isNaN(area) || area < 0)) {
+    //  errors.push("Area must be a positive number.");
+    //}
+
+    if (errors.length > 0) {
+      alert(errors.join("\n"));
+      return;
+    }
+     // ✅ Passed all checks — now insert
     const values = [
-      formData.get("caseNo"),
-      formData.get("filingDate"),
+      formData.get("mp"),
+      caseNo,
+      filingDate,
       formData.get("petitioner"),
       formData.get("opponent"),
       formData.get("section"),
       formData.get("officer"),
       formData.get("mouza"),
       formData.get("khatian"),
-      formData.get("jl"),
-      formData.get("dag"),
+      jl,
+      dag,
       formData.get("area"),
-      formData.get("nextDate"),
+      nextDate,
       formData.get("advocate")
     ];
 
-    const tbody = document.querySelector("#caseTable tbody");
+  
+    //const tbody = document.querySelector("#caseTable tbody");
     const tr = document.createElement("tr");
 
     values.forEach(val => {
