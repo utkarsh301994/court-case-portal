@@ -97,12 +97,16 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
       errors.push(`Next Date must be after Filing Date.`);
     }
     for (let i = 0; i < dags.length; i++) {
+        const jl = jls[i].trim();
+        const dag = dags[i].trim();
+        const area = areas[i].trim();
+        const khatian = khatians[i].trim();
         // ✅ 4. JL No + Dag No must be unique combination
         for (let row of existingRows) {
           const existingJL = row.children[8]?.textContent.trim();
           const existingDag = row.children[9]?.textContent.trim();
-          if (existingJL === jls[i] && existingDag === dags[i]) {
-            errors.push(`Combination of JL No. ${jls[i]} and Dag No. ${dags[i]} already exists.`);
+          if (existingJL === jl && existingDag === dag) {
+            errors.push(`Combination of JL No. ${jl} and Dag No. ${dag} already exists.`);
             break;
           }
         }
@@ -128,10 +132,10 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
           formData.get("section"),
           formData.get("officer"),
           formData.get("mouza"),
-          khatians[i],
-          jls[i],
-          dags[i],
-          areas[i],
+          khatian,
+          jl,
+          dag,
+          area,
           nextDate,
           formData.get("advocate")
         ];
