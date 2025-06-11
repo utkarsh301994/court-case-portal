@@ -132,3 +132,15 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     tbody.appendChild(tr);
     form.reset(); // Clear form
   });
+function addLandEntry() {
+  const container = document.getElementById("landDetailsContainer");
+  const newEntry = document.createElement("div");
+  newEntry.classList.add("land-entry");
+  newEntry.innerHTML = `
+    
+    <input type="text" name="khatian[]" placeholder="Khatian No." required>
+    <input type="text" name="jl[]" placeholder="JL No." required>
+    <input type="text" name="dag[]" placeholder="Dag No." required>
+  `;
+  container.appendChild(newEntry);
+}
