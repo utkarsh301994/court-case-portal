@@ -10,10 +10,13 @@
   <form id="caseForm">
     <div style="display: flex; flex-wrap: wrap; gap: 10px;">
       <input type="text" placeholder="Case No." name="caseNo" required>
-      <input type="date" placeholder="Filing Date" name="filingDate" required>
+      
       <input type="text" placeholder="Petitioner's Name" name="petitioner" required>
       <input type="text" placeholder="O.P's Name" name="opponent" required>
       <input type="text" placeholder="Under Section" name="section">
+      <input type="date" placeholder="Filing Date" name="filingDate" required>
+      <input type="date" placeholder="Next Date" name="nextDate">
+      <input type="text" placeholder="Advocate" name="advocate">
       <select name="officer" required>
         <option value="" disabled selected>Select Officer</option>
         <option value="burwan">Burwan</option>
@@ -23,6 +26,7 @@
         <option value="khargram">Khargram</option>
       </select>
       <input type="text" placeholder="Mouza" name="mouza" required>
+      
       <!-- Dynamic Land Entry Section -->
       <div id="landDetailsContainer">
         <div class="land-entry">
@@ -36,8 +40,7 @@
       </div>
       <button type="button" onclick="addLandEntry()">+ Add More Land</button>
   
-      <input type="date" placeholder="Next Date" name="nextDate">
-      <input type="text" placeholder="Advocate" name="advocate">
+      
     </div>
     <br>
     <button type="submit">Add Case</button>
