@@ -69,13 +69,15 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     const today = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD'
 
     const caseNo = formData.get("caseNo").trim();
-    const jl = formData.get("jl").trim();
-    const dag = formData.get("dag").trim();
-
+    const khatians = formData.getAll("khatian[]");
+    const jls = formData.getAll("jl[]");
+    const dags = formData.getAll("dag[]");
+    const areas = formData.getAll("area[]");
+  
     const tbody = document.querySelector("#caseTable tbody");
     const existingRows = tbody.querySelectorAll("tr");
     const errors = [];
-
+    
     // ✅ 1. Case No. should be unique
     for (let row of existingRows) {
       const existingCaseNo = row.children[0]?.textContent.trim();
@@ -94,54 +96,64 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     if (nextDate && new Date(nextDate) <= new Date(filingDate)) {
       errors.push(`Next Date must be after Filing Date.`);
     }
-
-    // ✅ 4. JL No + Dag No must be unique combination
-    for (let row of existingRows) {
-      const existingJL = row.children[8]?.textContent.trim();
-      const existingDag = row.children[9]?.textContent.trim();
-      if (existingJL === jl && existingDag === dag) {
-        errors.push(`Combination of JL No. ${jl} and Dag No. ${dag} already exists.`);
-        break;
-      }
-    }
-
-    // Optional basic type checks
-    //const area = formData.get("area");
-    //if (area && (isNaN(area) || area < 0)) {
-    //  errors.push("Area must be a positive number.");
-    //}
-
-    if (errors.length > 0) {
-      alert(errors.join("\n"));
-      return;
-    }
-     // ✅ Passed all checks — now insert
-    const values = [
-      caseNo,
-      filingDate,
-      formData.get("petitioner"),
-      formData.get("opponent"),
-      formData.get("section"),
-      formData.get("officer"),
-      formData.get("mouza"),
-      formData.get("khatian"),
-      jl,
-      dag,
-      formData.get("area"),
-      nextDate,
-      formData.get("advocate")
-    ];
-
+    for (let i = 0; i < dags.length; i++) {
+        // ✅ 4. JL No + Dag No must be unique combination
+        for (let row of existingRows) {
+          const existingJL = row.children[8]?.textContent.trim();
+          const existingDag = row.children[9]?.textContent.trim();
+          if (existingJL === jls[i] && existingDag === dags[i]) {
+            errors.push(`Combination of JL No. ${jls[i]} and Dag No. ${dags[i]} already exists.`);
+            break;
+          }
+        }
   
-    //const tbody = document.querySelector("#caseTable tbody");
-    const tr = document.createElement("tr");
-
-    values.forEach(val => {
-      const td = document.createElement("td");
-      td.textContent = val;
-      tr.appendChild(td);
-    });
-
-    tbody.appendChild(tr);
+        // Optional basic type checks
+        //const area = formData.get("area");
+        //if (area && (isNaN(area) || area < 0)) {
+        //  errors.push("Area must be a positive number.");
+        //}
+    
+        if (errors.length > 0) {
+          alert(errors.join("\n"));
+          return;
+        }
+      
+      
+       // ✅ Passed all checks — now insert
+        const values = [
+          caseNo,
+          filingDate,
+          formData.get("petitioner"),
+          formData.get("opponent"),
+          formData.get("section"),
+          formData.get("officer"),
+          formData.get("mouza"),
+          khatians[i],
+          jls[i],
+          dags[i],
+          areas[i],
+          nextDate,
+          formData.get("advocate")
+        ];
+  
+    
+        //const tbody = document.querySelector("#caseTable tbody");
+        const tr = document.createElement("tr");
+    
+        values.forEach(val => {
+          const td = document.createElement("td");
+          td.textContent = val;
+          tr.appendChild(td);
+        });
+  
+        tbody.appendChild(tr);
+    }
     form.reset(); // Clear form
+    document.getElementById("landDetailsContainer").innerHTML = `
+    <div class="land-entry">
+      <input type="text" name="mouza[]" placeholder="Mouza" required>
+      <input type="text" name="khatian[]" placeholder="Khatian No." required>
+      <input type="text" name="jl[]" placeholder="JL No." required>
+      <input type="text" name="dag[]" placeholder="Dag No." required>
+    </div>`;
   });
