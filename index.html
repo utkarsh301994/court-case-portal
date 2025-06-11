@@ -23,12 +23,18 @@
         <option value="khargram">Khargram</option>
       </select>
       <input type="text" placeholder="Mouza" name="mouza" required>
-      
-      <!-- Numbers -->
-      <input type="number" placeholder="Khatian No." name="khatian" min="0">
-      <input type="number" placeholder="JL No." name="jl" min="0" required>
-      <input type="number" placeholder="Dag No." name="dag" min="0" required>
-      <input type="number" step="0.01" placeholder="Area" name="area" min="0">
+      <!-- Dynamic Land Entry Section -->
+      <div id="landDetailsContainer">
+        <div class="land-entry">
+          
+          <!-- Numbers -->
+          <input type="number" placeholder="Khatian No." name="khatian" min="0">
+          <input type="number" placeholder="JL No." name="jl" min="0" required>
+          <input type="number" placeholder="Dag No." name="dag" min="0" required>
+          <input type="number" step="0.01" placeholder="Area" name="area" min="0">
+        </div>
+      </div>
+      <button type="button" onclick="addLandEntry()">+ Add More Land</button>
   
       <input type="date" placeholder="Next Date" name="nextDate">
       <input type="text" placeholder="Advocate" name="advocate">
