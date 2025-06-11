@@ -11,6 +11,7 @@ function addLandEntry() {
     <input type="text" name="khatian[]" placeholder="Khatian No." required>
     <input type="text" name="jl[]" placeholder="JL No." required>
     <input type="text" name="dag[]" placeholder="Dag No." required>
+    <input type="text" name="area[]" placeholder="Area">
   `;
   container.appendChild(newEntry);
 }
