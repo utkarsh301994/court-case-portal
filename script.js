@@ -8,10 +8,10 @@ function addLandEntry() {
   newEntry.classList.add("land-entry");
   newEntry.innerHTML = `
     
-    <input type="text" name="khatian[]" placeholder="Khatian No." required>
-    <input type="text" name="jl[]" placeholder="JL No." required>
-    <input type="text" name="dag[]" placeholder="Dag No." required>
-    <input type="text" name="area[]" placeholder="Area">
+    <input type="number" placeholder="Khatian No." name="khatian[]" min="0">
+    <input type="number" placeholder="JL No." name="jl[]" min="0" required>
+    <input type="number" placeholder="Dag No." name="dag[]" min="0" required>
+    <input type="number" step="0.01" placeholder="Area" name="area[]" min="0">
   `;
   container.appendChild(newEntry);
 }
