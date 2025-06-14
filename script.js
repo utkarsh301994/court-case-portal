@@ -7,10 +7,10 @@ function addLandEntry() {
   const newEntry = document.createElement("div");
   newEntry.classList.add("land-entry");
   newEntry.innerHTML = `
-    <input type="number" placeholder="JL No." name="jl[]" min="0" required>
-    <input type="number" placeholder="Dag No." name="dag[]" min="0" required>
-    <input type="number" placeholder="Khatian No." name="khatian[]" min="0">
-    <input type="number" step="0.01" placeholder="Area" name="area[]" min="0">
+      <input type="text" placeholder="JL No." name="jl[]" required>
+      <input type="text" placeholder="Dag No." name="dag[]" required>
+      <input type="text" placeholder="Khatian No." name="khatian[]" >
+      <input type="text" placeholder="Area" name="area[]" >
   `;
   container.appendChild(newEntry);
 }
@@ -156,7 +156,7 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     <div class="land-entry">
       <input type="text" name="jl[]" placeholder="JL No." required>
       <input type="text" name="dag[]" placeholder="Dag No." required>
-      <input type="text" name="khatian[]" placeholder="Khatian No." required>
-      <input type="number" step="0.01" placeholder="Area" name="area[]" min="0">
+      <input type="text" name="khatian[]" placeholder="Khatian No.">
+      <input type="text" placeholder="Area" name="area[]">
     </div>`;
   });
