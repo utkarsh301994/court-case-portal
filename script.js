@@ -121,14 +121,23 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
         const dag = dags[i].trim();
         const area = areas[i].trim();
         const khatian = khatians[i].trim();
-        // ✅ 4. JL No + Dag No must be unique combination
-        for (let row of existingRows) {
-          const existingJL = row.children[8]?.textContent.trim();
-          const existingDag = row.children[9]?.textContent.trim();
-          if (existingJL === jl && existingDag === dag) {
-            errors.push(`Combination of JL No. ${jl} and Dag No. ${dag} already exists.`);
-            break;
-          }
+        // Check in Supabase if this JL+Dag combo already exists
+        const { data: duplicateRows, error: checkError } = await supabaseClient
+          .from("cases")
+          .select("id")
+          .eq("jl_no", jl)
+          .eq("dag_no", dag);
+      
+        if (checkError) {
+          console.error("Supabase check error:", checkError);
+          errors.push("Error checking JL No. and Dag No. uniqueness.");
+        } else if (duplicateRows.length > 0) {
+          errors.push(`Combination of JL No. ${jl} and Dag No. ${dag} already exists in database.`);
+        }
+      
+        if (errors.length > 0) {
+          alert(errors.join("\n"));
+          return;
         }
   
         // Optional basic type checks
@@ -137,10 +146,7 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
         //  errors.push("Area must be a positive number.");
         //}
     
-        if (errors.length > 0) {
-          alert(errors.join("\n"));
-          return;
-        }
+        
       
       
        // 🔽 INSERT INTO SUPABASE
