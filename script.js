@@ -1,6 +1,7 @@
+import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/+esm';
 const supabaseUrl = 'https://lrllzxsiavbqdksvxlao.supabase.co'; // your URL
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxybGx6eHNpYXZicWRrc3Z4bGFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk4ODcyMDYsImV4cCI6MjA2NTQ2MzIwNn0._vP4HPl3Jl49kMXMxzgCdVIa2NAwuKUTolCMRIOATQM'; // your anon key
-const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 
 function addLandEntry() {
@@ -17,7 +18,7 @@ function addLandEntry() {
 }
 
 async function loadCases() {
-  const { data, error } = await supabaseClient
+  const { data, error } = await supabase
     .from('cases') // your table name
     .select('*');
 
