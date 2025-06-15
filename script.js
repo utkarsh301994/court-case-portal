@@ -35,16 +35,17 @@ async function loadCases() {
       <td>${row.case_no || ""}</td>
       <td>${row.filing_date || ""}</td>
       <td>${row.petitioner || ""}</td>
-      <td>${row.opponent || ""}</td>
+      <td>${row.respondent || ""}</td>
       <td>${row.section || ""}</td>
+      <td>${row.next_date || ""}</td>
+      <td>${row.advocate || ""}</td>
       <td>${row.officer || ""}</td>
       <td>${row.mouza || ""}</td>
       <td>${row.khatian_no || ""}</td>
       <td>${row.jl_no || ""}</td>
       <td>${row.dag_no || ""}</td>
       <td>${row.area || ""}</td>
-      <td>${row.next_date || ""}</td>
-      <td>${row.advocate || ""}</td>
+      
     `;
     tbody.appendChild(tr);
   });
