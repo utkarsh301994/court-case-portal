@@ -41,7 +41,7 @@ async function loadCases() {
       <td>${row.advocate || ""}</td>
       <td>${row.officer || ""}</td>
       <td>${row.mouza || ""}</td>
-      <td>${row.khatian_no || ""}</td>
+      <td>${row.khatian || ""}</td>
       <td>${row.jl_no || ""}</td>
       <td>${row.dag_no || ""}</td>
       <td>${row.area || ""}</td>
