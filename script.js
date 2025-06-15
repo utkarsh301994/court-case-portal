@@ -172,8 +172,6 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
           console.error("Insertion error:", error.message);
           alert("Failed to add case: " + error.message);
           return;
-        } else {
-          console.log("Inserted:", data);
         }
       }
     
