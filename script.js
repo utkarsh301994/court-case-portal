@@ -82,11 +82,11 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     const form = e.target;
     const formData = new FormData(form);
   
-    const filingDate = formData.get("filingDate");
-    const nextDate = formData.get("nextDate");
+    const filingDate = formData.get("filing_date");
+    const nextDate = formData.get("next_date");
     const today = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD'
 
-    const caseNo = formData.get("caseNo").trim();
+    const caseNo = formData.get("case_no").trim();
     const khatians = formData.getAll("khatian[]");
     const jls = formData.getAll("jl[]");
     const dags = formData.getAll("dag[]");
