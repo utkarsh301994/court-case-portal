@@ -95,6 +95,7 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
     const jls = formData.getAll("jl[]");
     const dags = formData.getAll("dag[]");
     const areas = formData.getAll("area[]");
+    const errors = [];
   
     const { data: existingCases, error: fetchError } = await supabaseClient
       .from("cases")
