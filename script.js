@@ -45,7 +45,6 @@ async function loadCases() {
       <td>${row.jl_no || ""}</td>
       <td>${row.dag_no || ""}</td>
       <td>${row.area || ""}</td>
-      
     `;
     tbody.appendChild(tr);
   });
@@ -145,18 +144,18 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
        // ✅ Passed all checks — now insert
         const values = [
           caseNo,
-          filingDate,
+          formData.get("section"),
           formData.get("petitioner"),
           formData.get("opponent"),
-          formData.get("section"),
+          filingDate,
+          nextDate,
+          formData.get("advocate")
           formData.get("officer"),
           formData.get("mouza"),
           khatian,
           jl,
           dag,
           area,
-          nextDate,
-          formData.get("advocate")
         ];
   
     
