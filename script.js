@@ -155,7 +155,7 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
           khatian,
           jl,
           dag,
-          area,
+          area
         ];
   
     
