@@ -2,6 +2,8 @@
 const supabaseUrl = 'https://lrllzxsiavbqdksvxlao.supabase.co'; // your URL
 const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxybGx6eHNpYXZicWRrc3Z4bGFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk4ODcyMDYsImV4cCI6MjA2NTQ2MzIwNn0._vP4HPl3Jl49kMXMxzgCdVIa2NAwuKUTolCMRIOATQM'; // your anon key
 const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+
 function addLandEntry() {
   const container = document.getElementById("landDetailsContainer");
   const newEntry = document.createElement("div");
@@ -15,23 +17,41 @@ function addLandEntry() {
   container.appendChild(newEntry);
 }
 
-fetch(API_URL)
-  .then(res => res.text())
-  .then(rep => {
-    const json = JSON.parse(rep.substr(47).slice(0, -2));
-    const table = document.querySelector("#caseTable tbody");
-    const rows = json.table.rows;
+async function loadCases() {
+  const { data, error } = await supabase
+    .from('cases') // your table name
+    .select('*');
 
-    rows.forEach(row => {
-      const tr = document.createElement("tr");
-      row.c.forEach(cell => {
-        const td = document.createElement("td");
-        td.textContent = cell ? cell.v : "";
-        tr.appendChild(td);
-      });
-      table.appendChild(tr);
-    });
+  if (error) {
+    console.error('Error fetching data:', error.message);
+    return;
+  }
+
+  const tbody = document.querySelector("#caseTable tbody");
+  tbody.innerHTML = ""; // Clear existing rows if any
+
+  data.forEach(row => {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>${row.case_no || ""}</td>
+      <td>${row.filing_date || ""}</td>
+      <td>${row.petitioner || ""}</td>
+      <td>${row.opponent || ""}</td>
+      <td>${row.section || ""}</td>
+      <td>${row.officer || ""}</td>
+      <td>${row.mouza || ""}</td>
+      <td>${row.khatian_no || ""}</td>
+      <td>${row.jl_no || ""}</td>
+      <td>${row.dag_no || ""}</td>
+      <td>${row.area || ""}</td>
+      <td>${row.next_date || ""}</td>
+      <td>${row.advocate || ""}</td>
+    `;
+    tbody.appendChild(tr);
   });
+}
+
+loadCases(); // Call on page load
 const filters = document.querySelectorAll("thead input");
 
 filters.forEach((input, colIndex) => {
