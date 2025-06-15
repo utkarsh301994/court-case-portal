@@ -140,34 +140,35 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
         }
       
       
-       // ✅ Passed all checks — now insert
-        const values = [
-          case_no,
-          formData.get("section"),
-          formData.get("petitioner"),
-          formData.get("respondent"),
-          filing_date,
-          next_date,
-          formData.get("advocate"),
-          formData.get("officer"),
-          formData.get("mouza"),
-          jl,
-          dag,
-          khatian,
-          area
-        ];
-  
+       // 🔽 INSERT INTO SUPABASE
+        const { data, error } = await supabaseClient.from("cases").insert([
+          {
+            case_no: case_no,
+            section: section,
+            petitioner: petitioner,
+            opponent: respondent,
+            filing_date: filing_date,
+            next_date: nextDate,
+            advocate: advocate,
+            officer: officer,
+            mouza: mouza,
+            khatian_no: khatian,
+            jl_no: jl,
+            dag_no: dag,
+            area: area,
+          }
+        ]);
     
-        //const tbody = document.querySelector("#caseTable tbody");
-        const tr = document.createElement("tr");
+        if (error) {
+          console.error("Insertion error:", error.message);
+          alert("Failed to add case: " + error.message);
+          return;
+        } else {
+          console.log("Inserted:", data);
+        }
+      }
     
-        values.forEach(val => {
-          const td = document.createElement("td");
-          td.textContent = val;
-          tr.appendChild(td);
-        });
-  
-        tbody.appendChild(tr);
+      alert("Case(s) added successfully!");
     }
     form.reset(); // Clear form
     document.getElementById("landDetailsContainer").innerHTML = `
@@ -177,4 +178,5 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
       <input type="text" name="khatian[]" placeholder="Khatian No.">
       <input type="text" placeholder="Area" name="area[]">
     </div>`;
+  loadCases(); // Refresh the table
   });
