@@ -41,9 +41,9 @@ async function loadCases() {
       <td>${row.advocate || ""}</td>
       <td>${row.officer || ""}</td>
       <td>${row.mouza || ""}</td>
-      <td>${row.khatian || ""}</td>
       <td>${row.jl_no || ""}</td>
       <td>${row.dag_no || ""}</td>
+      <td>${row.khatian || ""}</td>
       <td>${row.area || ""}</td>
     `;
     tbody.appendChild(tr);
@@ -151,9 +151,9 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
           formData.get("advocate"),
           formData.get("officer"),
           formData.get("mouza"),
-          khatian,
           jl,
           dag,
+          khatian,
           area
         ];
   
