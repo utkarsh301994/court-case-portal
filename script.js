@@ -84,7 +84,12 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
     const filing_date = formData.get("filing_date");
     const next_date = formData.get("next_date");
     const today = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD'
-
+    const section = formData.get("section");
+    const petitioner = formData.get("petitioner");
+    const respondent = formData.get("respondent");
+    const advocate = formData.get("advocate");
+    const officer = formData.get("officer");
+    const mouza = formData.get("mouza");
     const case_no = formData.get("case_no").trim();
     const khatians = formData.getAll("khatian[]");
     const jls = formData.getAll("jl[]");
@@ -157,7 +162,7 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
             petitioner: petitioner,
             opponent: respondent,
             filing_date: filing_date,
-            next_date: nextDate,
+            next_date: next_date,
             advocate: advocate,
             officer: officer,
             mouza: mouza,
