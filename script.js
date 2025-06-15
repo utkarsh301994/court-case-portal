@@ -1,7 +1,7 @@
 
-const SHEET_ID = '17n3ZUF89kBzxGcrW5aLW3cK44wFOQuuuEfaOhkFXLDU'; // Replace with your actual Sheet ID
-const SHEET_NAME = 'MP/C CASE';
-const API_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?sheet=${SHEET_NAME}`;
+const supabaseUrl = 'https://xyz.supabase.co'; // your URL
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxybGx6eHNpYXZicWRrc3Z4bGFvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk4ODcyMDYsImV4cCI6MjA2NTQ2MzIwNn0._vP4HPl3Jl49kMXMxzgCdVIa2NAwuKUTolCMRIOATQM'; // your anon key
+const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 function addLandEntry() {
   const container = document.getElementById("landDetailsContainer");
   const newEntry = document.createElement("div");
