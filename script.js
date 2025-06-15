@@ -33,10 +33,10 @@ async function loadCases() {
     const tr = document.createElement("tr");
     tr.innerHTML = `
       <td>${row.case_no || ""}</td>
-      <td>${row.filing_date || ""}</td>
+      <td>${row.section || ""}</td>
       <td>${row.petitioner || ""}</td>
       <td>${row.respondent || ""}</td>
-      <td>${row.section || ""}</td>
+      <td>${row.filing_date || ""}</td>
       <td>${row.next_date || ""}</td>
       <td>${row.advocate || ""}</td>
       <td>${row.officer || ""}</td>
