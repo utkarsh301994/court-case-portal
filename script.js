@@ -91,17 +91,20 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
     const dags = formData.getAll("dag[]");
     const areas = formData.getAll("area[]");
   
-    const tbody = document.querySelector("#caseTable tbody");
-    const existingRows = tbody.querySelectorAll("tr");
-    const errors = [];
+    const { data: existingCases, error: fetchError } = await supabase
+      .from("cases")
+      .select("case_no")
+      .eq("case_no", case_no);
     
-    // ✅ 1. Case No. should be unique
-    for (let row of existingRows) {
-      const existingCaseNo = row.children[0]?.textContent.trim();
-      if (existingCaseNo === case_no) {
-        errors.push(`Duplicate Case No: ${case_no} already exists.`);
-        break;
-      }
+    if (fetchError) {
+      console.error("Error checking for duplicate case:", fetchError.message);
+      alert("Could not verify if case already exists.");
+      return;
+    }
+    
+    if (existingCases.length > 0) {
+      alert(`Duplicate Case No: ${case_no} already exists in database.`);
+      return;
     }
 
     // ✅ 2. Filing Date must be today's date
