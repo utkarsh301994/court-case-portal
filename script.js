@@ -146,7 +146,7 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
           caseNo,
           formData.get("section"),
           formData.get("petitioner"),
-          formData.get("opponent"),
+          formData.get("respondent"),
           filingDate,
           nextDate,
           formData.get("advocate")
