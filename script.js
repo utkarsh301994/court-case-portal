@@ -149,7 +149,7 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
           formData.get("respondent"),
           filing_date,
           next_date,
-          formData.get("advocate")
+          formData.get("advocate"),
           formData.get("officer"),
           formData.get("mouza"),
           khatian,
