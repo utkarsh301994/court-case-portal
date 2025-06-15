@@ -76,7 +76,7 @@ filters.forEach((input, colIndex) => {
     });
   });
 });
-document.getElementById("caseForm").addEventListener("submit",async function (e) {
+document.getElementById("caseForm").addEventListener("submit", async function (e) {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
