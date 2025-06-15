@@ -82,11 +82,11 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     const form = e.target;
     const formData = new FormData(form);
   
-    const filingDate = formData.get("filing_date");
-    const nextDate = formData.get("next_date");
+    const filing_date = formData.get("filing_date");
+    const next_date = formData.get("next_date");
     const today = new Date().toISOString().split("T")[0]; // 'YYYY-MM-DD'
 
-    const caseNo = formData.get("case_no").trim();
+    const case_no = formData.get("case_no").trim();
     const khatians = formData.getAll("khatian[]");
     const jls = formData.getAll("jl[]");
     const dags = formData.getAll("dag[]");
@@ -143,12 +143,12 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
       
        // ✅ Passed all checks — now insert
         const values = [
-          caseNo,
+          case_no,
           formData.get("section"),
           formData.get("petitioner"),
           formData.get("respondent"),
-          filingDate,
-          nextDate,
+          filing_date,
+          next_date,
           formData.get("advocate")
           formData.get("officer"),
           formData.get("mouza"),
