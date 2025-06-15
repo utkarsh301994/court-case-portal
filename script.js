@@ -174,9 +174,7 @@ document.getElementById("caseForm").addEventListener("submit", async function (e
           return;
         }
       }
-    
-      alert("Case(s) added successfully!");
-    }
+    alert("Case(s) added successfully!");
     form.reset(); // Clear form
     document.getElementById("landDetailsContainer").innerHTML = `
     <div class="land-entry">
