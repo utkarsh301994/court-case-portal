@@ -99,19 +99,19 @@ document.getElementById("caseForm").addEventListener("submit", function (e) {
     // ✅ 1. Case No. should be unique
     for (let row of existingRows) {
       const existingCaseNo = row.children[0]?.textContent.trim();
-      if (existingCaseNo === caseNo) {
-        errors.push(`Duplicate Case No: ${caseNo} already exists.`);
+      if (existingCaseNo === case_no) {
+        errors.push(`Duplicate Case No: ${case_no} already exists.`);
         break;
       }
     }
 
     // ✅ 2. Filing Date must be today's date
-    //if (filingDate !== today) {
+    //if (filing_date !== today) {
      // errors.push(`Filing Date must be today's date: ${today}`);
    // }
 
     // ✅ 3. Next Date must be after Filing Date
-    if (nextDate && new Date(nextDate) <= new Date(filingDate)) {
+    if (next_date && new Date(next_date) <= new Date(filing_date)) {
       errors.push(`Next Date must be after Filing Date.`);
     }
     for (let i = 0; i < dags.length; i++) {
